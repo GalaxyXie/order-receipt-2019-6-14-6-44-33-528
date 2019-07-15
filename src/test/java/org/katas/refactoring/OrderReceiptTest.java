@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 
 public class OrderReceiptTest {
@@ -36,6 +38,20 @@ public class OrderReceiptTest {
                 "Sales Tax\t6.5",
                 "Total Amount\t71.5"
         );
+
+    }
+    @Test
+    public void shouldReturnItemInformation() {
+        //given
+        LineItem lineItem = new LineItem("milk",10.0,2);
+        //when
+        String description=lineItem.getDescription();
+        double price=lineItem.getPrice();
+        int quantity=lineItem.getQuantity();
+        //then
+        assertThat(description).contains("milk");
+        assertEquals(price,10.0);
+        assertSame(quantity,2);
     }
 
 }
