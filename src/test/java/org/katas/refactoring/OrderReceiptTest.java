@@ -3,6 +3,7 @@ package org.katas.refactoring;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -52,6 +53,18 @@ public class OrderReceiptTest {
         assertThat(description).contains("milk");
         assertEquals(price,10.0);
         assertSame(quantity,2);
+    }
+    @Test
+    public void shouldReturnOderInformation() {
+        //given
+        Order order = new Order("Mr X", "Chicago, 60601", new ArrayList<LineItem>());
+        String name=order.getCustomerName();
+        String address=order.getCustomerAddress();
+        List<LineItem>lineItems=order.getLineItems();
+        //then
+        assertThat(name).contains("Mr X");
+        assertEquals("Chicago, 60601",address);
+        assertEquals(new ArrayList<LineItem>(),lineItems);
     }
 
 }
